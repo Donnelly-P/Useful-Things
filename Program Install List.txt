@@ -1,0 +1,54 @@
+##Step 1
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+
+# List of programs to install via winget
+$programs = @(
+    'Google.Chrome',
+    'ublockorigin-chrome', # This extension might need to be installed manually
+    'DominikReichl.KeePass',
+    'Opera.Opera',
+    'Brave.Brave',
+    'Discord.Discord',
+    'Zoom.Zoom',
+    'Spotify.Spotify',
+    'TheDocumentFoundation.LibreOffice',
+    'qBittorrent.qBittorrent',
+    'RARLab.WinRAR',
+    'Valve.Steam',
+    'EpicGames.EpicGamesLauncher',
+    'RiotGames.LeagueOfLegends',
+    'RiotGames.Valorant',
+    'Mojang.MinecraftLauncher',
+    'Notepad++.Notepad++',
+    'Microsoft.VisualStudioCode',
+    'Python.Python.3',
+    'OpenVPNTechnologies.OpenVPN',
+    'OpenVPNTechnologies.OpenVPNConnect',
+    'Evernote.Evernote',
+    'Voidtools.Everything',
+    'flux.flux',
+    'Rainmeter.Rainmeter'
+)
+# KeyScrambler and Spybot might need to be installed manually as they are not available via winget
+
+# Install each program
+foreach ($program in $programs) {
+    winget install --id $program --silent --accept-package-agreements --accept-source-agreements
+}
+
+# Upgrade all installed packages to the latest versions
+winget upgrade --all --silent --accept-package-agreements --accept-source-agreements
+
+
+# Upgrade all installed packages to the latest versions
+choco upgrade all -y
+
+
+##List Of Websites
+https://www.filehorse.com/download-spybot-search-destroy/download/
+https://www.qfxsoftware.com/download/
+https://www.reddit.com/r/Piracy/wiki/megathread/
+https://www.virustotal.com/gui/home/upload
